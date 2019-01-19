@@ -46,11 +46,25 @@ class Player {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    handleInput() {
+    handleInput(keyPress) {
         //hoch: y Position um 75 reduzieren
         //links: x Position um 101 reduzieren
         //runter: y Position um 75 erhöhen
         //rechts: x Position um 101 erhöhen
+        switch (keyPress) {
+            case 'up':
+                this.y -= 85;
+                break;
+            case 'left':
+                this.x -= 101;
+                break;
+            case 'down':
+                this.y += 85;
+                break;
+            case 'right':
+                this.x += 101;
+        }
+        console.log(this.x, this.y);
     }
 }
 
