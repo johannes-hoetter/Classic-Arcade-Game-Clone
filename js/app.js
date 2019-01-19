@@ -53,16 +53,24 @@ class Player {
         //rechts: x Position um 101 erhöhen
         switch (keyPress) {
             case 'up':
-                this.y -= 85;
+                if (this.y > -35 ) {
+                    this.y -= 85;
+                }
                 break;
             case 'left':
-                this.x -= 101;
+                if (this.x > 0) {
+                    this.x -= 101;
+                }
                 break;
             case 'down':
-                this.y += 85;
+                if (this.y < 390) {
+                    this.y += 85;
+                }
                 break;
             case 'right':
-                this.x += 101;
+                if (this.x < 404) {
+                    this.x += 101;
+                }
         }
         console.log(this.x, this.y);
     }
