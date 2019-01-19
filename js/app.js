@@ -1,5 +1,6 @@
 (function(global) {
     //global "settings"
+
     "use strict";
     const win = global.window;
     const rows = new Map();
@@ -30,19 +31,17 @@
     // Enemies our player must avoid
     class Enemy {
 
+        //create a new Enemy object
         constructor(row, speed) {
-
+            //Enemies get constructed by naming the row at which the enemy sits at (3, 4 or 5) and the speed
+            //at which it moves
             this.row = row;
             this.speed = speed; //can be set to 0 to freeze the enemy
-            if (this.row === 'row1' || this.row === 'row2') {
-                if(this.speed >= 150) {
-                    this.speed = 150;
-                }
-            }
 
-
+            //image of the enemy (currently only bugs available ;) )
             this.sprite = 'images/enemy-bug.png';
 
+            //coordinates, will be changed during the play
             this.x = 0;
             this.y = rows.get(this.row);
         }
@@ -72,10 +71,12 @@
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         }
 
+        //make the enemy stop moving
         freeze() {
             this.speed = 0;
         }
 
+        //get the row of the enemy
         getRow() {
             return this.row;
         }
@@ -86,30 +87,41 @@
 
     class Player {
 
+        //create a new Player object
         constructor(x = 202, y = 390) {
+            //the player gets positioned directly through the x and y coordinates;
+            //currently, they're set by default only
 
+            //memorize where the player started at (to place the player back there after one game)
             this.beginX = x;
             this.beginY = y;
 
+            //image of the player
             this.sprite = 'images/char-boy.png';
 
+            //current location
             this.x = this.beginX;
             this.y = this.beginY;
-            this.speed = 1; //can be set to 0 to freeze the player
+
+            //only needed to freeze the player
+            this.speed = 1; //if freezed, this is set to 0
         }
 
+        //update the state of the game
         update() {
             if (this.y === -35) {
                 this.winGame();
             }
         }
 
+        //draw the player
         render() {
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         }
 
+        //handle key presses in order to move the player
         handleInput(keyPress) {
-            let mvmt;
+            let mvmt; //where the player goes
             switch (keyPress) {
                 case 'up':
                     if (this.y > -35 ) {
@@ -138,16 +150,19 @@
             //console.log(this.x, this.y);
         }
 
+        //initialize the players state
         init() {
             this.x = this.beginX;
             this.y = this.beginY;
             this.speed = 1;
         }
 
+        //freeze the player
         freeze() {
             this.speed = 0;
         }
 
+        //player reaches top row
         winGame() {
             //short freeze, so that player knows that game is over
             win.player.freeze();
@@ -162,6 +177,7 @@
             }, 1000);
         }
 
+        //player collides with enemy
         loseGame() {
             //right now, this does exactly (!) the same as winGame()
             //will be changed in the future
@@ -177,10 +193,12 @@
             }, 1000);
         }
 
+        //used to get the enemies for one play
         getEnemies() {
             win.allEnemies = [];
-            let enemyRowPossibilities = ['row1',
-                'row2',
+            let enemyRowPossibilities = [
+               // 'row1',
+               // 'row2',
                 'row3', 'row3',
                 'row4', 'row4',
                 'row5', 'row5', 'row5'];
@@ -189,7 +207,7 @@
             enemyRowPossibilities = shuffle(enemyRowPossibilities);
             enemySpeedPossibilites = shuffle(enemySpeedPossibilites);
             let rowsUsed = new Set([]);
-            while(rowsUsed.size < 5) { //while not all rows are filled with enemies
+            while(rowsUsed.size < 3) { //while not all rows are filled with enemies
                 const rowUsed = enemyRowPossibilities.pop();
                 const speedUsed =  enemySpeedPossibilites.pop();
                 const enemy = new Enemy(rowUsed, speedUsed);
