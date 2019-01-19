@@ -1,20 +1,23 @@
-# Classic Arcade Game Clone Project
+# Classical Arcade Game Clone
 
-## Table of Contents
+### About
+This repository holds the files for a project of  [Udacity's Front End Developer Nanodegree](https://eu.udacity.com/course/front-end-web-developer-nanodegree--nd001). 
+<img src="demo/example_screenshot.JPG" alt="screenshot of the game">
 
-- [Instructions](#instructions)
-- [Contributing](#contributing)
+### How to play
+The goal for the player is to cross the road and to move to the blue sea. While doing this, the player must avoid collision with the enemies,
+otherwise he has to begin at the start again. The game end when the player reaches the blue sea.
 
-## Instructions
+### Installation
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+To run this game on your local machine, you can either download the files or run the git command to clone the repository:
+```
+git https://github.com/johannes-hoetter/Classic-Arcade-Game-Clone.git
+```
+Open the `index.html` file with a browser (only tested with Google Chrome and Mozilla Firefox) and enjoy the game :)
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+### Todos
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
-
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+ - Add statistics which can be seen during / after the game (e.g. number of games won without collision, time needed, rating, ...)
+ - Add initial screen, where player can choose layouts (e.g. layout of map, image of player, image of enemies)
+ - Add gems to the game which the player can collect (e.g. "freeze all enemies" gem)
